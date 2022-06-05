@@ -1,9 +1,11 @@
 package com.abdulquadir.recipeapp.bootstrap;
 
+import com.abdulquadir.recipeapp.constants.Difficulty;
 import com.abdulquadir.recipeapp.model.*;
 import com.abdulquadir.recipeapp.repositories.CategoryRepository;
 import com.abdulquadir.recipeapp.repositories.RecipeRepository;
 import com.abdulquadir.recipeapp.repositories.UnitOfMeasureRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
@@ -11,9 +13,8 @@ import org.springframework.stereotype.Component;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
-
+@Slf4j
 @Component
 public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
@@ -34,8 +35,11 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
     private List<Recipe> getRecipes(){
 
+        log.info("inside getRecipes method - slf4j");
+
         List<Recipe> recipes = new ArrayList<>(2);
 
+        log.info("getting the UnitOfMeasure(UOM) for guacamole from h2-db");
         //get UOM
         UnitOfMeasure eachUom = getUnitOfMeasure("Each");
         UnitOfMeasure tableSpoonUom = getUnitOfMeasure("Tablespoon");
@@ -45,12 +49,12 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         UnitOfMeasure pintUom = getUnitOfMeasure("Pint");
         UnitOfMeasure cupUom = getUnitOfMeasure("Cup");;
 
-
+        log.info("getting the category for guacamole from h2-db");
         //get Categories
         Category americanCategory = getCategory("American");
         Category mexicanCategory = getCategory("Mexican");
 
-
+        log.info("Making the recipe for Guacamole");
         //Guacamole
         Recipe guacRecipe = new Recipe();
         guacRecipe.setDescription("Perfect Guacamole");
@@ -72,11 +76,13 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
         );
 
+        log.info("creating notes for guacamole");
         Notes guacNotes = new Notes();
         guacNotes.setRecipeNotes("Chilling tomatoes hurts their flavor. So, if you want to add chopped tomato to your guacamole, add it just before serving.");
 
         guacRecipe.setNotes(guacNotes);
 
+        log.info("adding ingredient information for guacamole");
         guacRecipe.addIngredient(new Ingredient("ripe Avacados", new BigDecimal(2), eachUom));
         guacRecipe.addIngredient(new Ingredient("Kosher salt", new BigDecimal(5 ), teaSpoonUom));
         guacRecipe.addIngredient(new Ingredient("fresh lime juice or lemon juice", new BigDecimal(2), tableSpoonUom));
@@ -89,6 +95,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         guacRecipe.getCategories().add(mexicanCategory);
         guacRecipe.getCategories().add(americanCategory);
 
+        log.info("adding guacamole in a list name recipes ");
         //adding to recipe list
         recipes.add(guacRecipe);
 

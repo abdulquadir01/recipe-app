@@ -1,14 +1,12 @@
 package com.abdulquadir.recipeapp.controllers;
 
-import com.abdulquadir.recipeapp.model.Category;
-import com.abdulquadir.recipeapp.model.UnitOfMeasure;
 import com.abdulquadir.recipeapp.services.RecipeService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.Optional;
-
+@Slf4j
 @Controller
 public class IndexController {
 
@@ -20,11 +18,14 @@ public class IndexController {
 
     @RequestMapping("/")
     public String getHomePage(){
+        log.info("inside getHomePage method - slf4j");
         return "index";
     }
 
     @RequestMapping("/recipes")
     public String getRecipePage(Model model){
+
+        log.info("inside getRecipePage method - slf4j");
         model.addAttribute("recipes", recipeService.getRecipies());
 
         return "recipePage";
