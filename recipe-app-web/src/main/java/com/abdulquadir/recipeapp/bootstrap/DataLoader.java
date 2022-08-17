@@ -64,11 +64,11 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         guacRecipe.setDirections(
                 "1. Cut the avocado: Cut the avocados in half. Remove the pit. Score the inside of the avocado with a blunt knife and scoop out the flesh with a spoon. Place in a bowl." + "\n" +
                 "2. Mash the avocado flesh: Using a fork, roughly mash the avocado. (Don't overdo it! The guacamole should be a little chunky.)" + "\n" +
-                "3. Add the remaining ingredients to taste:\n" +
+                "3. Add the remaining ingredients to taste: " + "\n" +
                     "Sprinkle with salt and lime (or lemon) juice. The acid in the lime juice will provide some balance to the richness of the avocado and will help delay the avocados from turning brown.\n" +
                     "\n" +
                     "Add the chopped onion, cilantro, black pepper, and chilis. Chili peppers vary individually in their spiciness. So, start with a half of one chili pepper and add more to the guacamole to your desired degree of heat."
-                + "\n" +
+                    + "\n" +
                 "4. Serve immediately:\n" +
                         "If making a few hours ahead, place plastic wrap on the surface of the guacamole and press down to cover it to prevent air reaching it. (The oxygen in the air causes oxidation which will turn the guacamole brown.)\n" +
                         "\n" +
@@ -92,8 +92,12 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         guacRecipe.addIngredient(new Ingredient("freshly granted clack pepper", new BigDecimal(2), dashUom));
         guacRecipe.addIngredient(new Ingredient("ripe tomato, seeds and pulp removed, chopped", new BigDecimal(2), eachUom));
 
-        guacRecipe.getCategories().add(mexicanCategory);
         guacRecipe.getCategories().add(americanCategory);
+        guacRecipe.getCategories().add(mexicanCategory);
+
+        guacRecipe.setUrl("https://www.simplyrecipes.com/recipes/perfect_guacamole/");
+        guacRecipe.setServings(2);
+        guacRecipe.setSource("Simply Recipes");
 
         log.info("adding guacamole in a list name recipes ");
         //adding to recipe list
@@ -148,6 +152,11 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         tacoRecipe.getCategories().add(mexicanCategory);
         tacoRecipe.getCategories().add(americanCategory);
 
+        tacoRecipe.setUrl("https://www.simplyrecipes.com/recipes/spicy_grilled_chicken_tacos/");
+        tacoRecipe.setServings(4);
+        guacRecipe.setSource("Simply Recipes");
+
+
         //adding to recipe list
         recipes.add(tacoRecipe);
 
@@ -168,7 +177,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         return categoryRepository
                 .findByDescription(description)
                 .orElseThrow(
-                        ()-> new RuntimeException(" Category "+description+ " not found!!")
+                        ()-> new RuntimeException(" Category " + description + " not found!!")
                 );
     }
 

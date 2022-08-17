@@ -1,6 +1,8 @@
 package com.abdulquadir.recipeapp.model;
 
-import org.junit.Before;
+
+
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -11,12 +13,12 @@ public class CategoryTest {
 
     Category category;
 
-    @Before
+    @BeforeAll
     public void setUp() throws Exception {
         category = new Category();
     }
 
-    @org.junit.Test
+    @Test
     public void getId() {
         Long idValues = 4L;
         category.setId(idValues);
@@ -24,11 +26,11 @@ public class CategoryTest {
         assertEquals(idValues, category.getId());
     }
 
-    @org.junit.Test
+    @Test
     public void getDescription() {
     }
 
-    @org.junit.Test
+    @Test
     public void getRecipes() {
     }
 }

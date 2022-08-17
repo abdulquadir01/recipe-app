@@ -2,7 +2,6 @@ package com.abdulquadir.recipeapp.model;
 
 import com.abdulquadir.recipeapp.constants.Difficulty;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -10,7 +9,7 @@ import java.util.Set;
 
 
 @Entity
-//@EqualsAndHashCode(exclude = {"defficulty", "notes", "categories"})
+//@EqualsAndHashCode(exclude = {"difficulty", "notes", "categories"})
 @Data
 public class Recipe {
 

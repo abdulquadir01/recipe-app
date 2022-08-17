@@ -1,27 +1,21 @@
 package com.abdulquadir.recipeapp.controllers;
 
 import com.abdulquadir.recipeapp.model.Recipe;
-import com.abdulquadir.recipeapp.repositories.RecipeRepository;
 import com.abdulquadir.recipeapp.services.RecipeService;
-import com.abdulquadir.recipeapp.services.RecipeServiceImpl;
-import org.junit.Before;
-import org.junit.Test;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MockMvcBuilder;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.ui.Model;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import static org.hamcrest.Matchers.any;
-import static org.junit.Assert.*;
-import static org.mockito.ArgumentMatchers.anySet;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -37,7 +31,7 @@ public class IndexControllerTest {
 
     IndexController indexController;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
         indexController = new IndexController(recipeService);
@@ -68,7 +62,7 @@ public class IndexControllerTest {
         recipe.setId(1L);
         recipes.add(recipe);
 
-        when(recipeService.getRecipies()).thenReturn(recipes);
+        when(recipeService.getRecipes()).thenReturn(recipes);
 
         ArgumentCaptor<Set<Recipe>> argumentCaptor = ArgumentCaptor.forClass(Set.class);
 
@@ -79,7 +73,7 @@ public class IndexControllerTest {
         //Then
         assertEquals( "recipePage", viewName);
 
-        verify(recipeService, times(1)).getRecipies();
+        verify(recipeService, times(1)).getRecipes();
         verify(model, times(1)).addAttribute(eq("recipes"), argumentCaptor.capture());
 
         Set<Recipe> setInController =  argumentCaptor.getValue();

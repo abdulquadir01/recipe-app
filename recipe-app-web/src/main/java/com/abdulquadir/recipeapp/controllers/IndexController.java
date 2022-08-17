@@ -26,7 +26,7 @@ public class IndexController {
     public String getRecipePage(Model model){
 
         log.info("inside getRecipePage method - slf4j");
-        model.addAttribute("recipes", recipeService.getRecipies());
+        model.addAttribute("recipes", recipeService.getRecipes());
 
         return "recipePage";
     }
