@@ -3,6 +3,7 @@ package com.abdulquadir.recipeapp.services;
 import com.abdulquadir.recipeapp.commands.RecipeCommand;
 import com.abdulquadir.recipeapp.converters.RecipeCommandToRecipe;
 import com.abdulquadir.recipeapp.converters.RecipeToRecipeCommand;
+import com.abdulquadir.recipeapp.exceptions.NotFoundException;
 import com.abdulquadir.recipeapp.model.Recipe;
 import com.abdulquadir.recipeapp.repositories.RecipeRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -40,7 +41,7 @@ public class RecipeServiceImpl implements RecipeService {
     public Recipe findById(Long id){
         Optional<Recipe> recipeOptional = recipeRepository.findById(id);
         if(!recipeOptional.isPresent()){
-            throw new RuntimeException("Recipe Not Found");
+            throw new NotFoundException("Recipe Not Found, for ID value :" +id.toString() );
         }
         return  recipeOptional.get();
     }
