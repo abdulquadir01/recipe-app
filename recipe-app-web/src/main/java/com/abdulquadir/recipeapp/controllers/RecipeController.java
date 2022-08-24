@@ -8,8 +8,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.validation.Valid;
 
 
 @Slf4j
@@ -23,10 +26,10 @@ public class RecipeController {
         this.recipeService = recipeService;
     }
 
-
     @GetMapping("/{id}/show")
     public String showById(@PathVariable String id, Model model){
         model.addAttribute("recipe", recipeService.findById(Long.valueOf(id)));
+
         return "recipe/showRecipe";
     }
 
@@ -45,6 +48,21 @@ public class RecipeController {
         return "recipe/recipeForm";
     }
 
+    @PostMapping(value = "")
+    public String saveOrUpdate(@Valid @ModelAttribute("recipe") RecipeCommand command, BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            bindingResult.getAllErrors().forEach( objectError -> {
+                log.debug(objectError.toString());
+            });
+
+            return "recipe/recipeForm";
+        }
+
+        RecipeCommand savedCommand = recipeService.saveRecipeCommand(command);
+
+        return "redirect:/recipe/" + savedCommand.getId() + "/show";
+    }
+
     @GetMapping("/{id}/delete")
     public String deleteRecipe(@PathVariable String id){
         log.debug("Deleted id: "+ id);
@@ -54,12 +72,6 @@ public class RecipeController {
          return "redirect:/recipes";
     }
 
-    @PostMapping(value = "")
-    public String saveOrUpdate(@ModelAttribute RecipeCommand command){
-        RecipeCommand savedCommand = recipeService.saveRecipeCommand(command);
-
-        return "redirect:/recipe/" + savedCommand.getId() + "/show";
-    }
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(NotFoundException.class)

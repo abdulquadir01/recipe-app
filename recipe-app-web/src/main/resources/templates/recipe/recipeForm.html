@@ -23,11 +23,16 @@
     <title> RecipeForm </title>
 </head>
 <body>
-
+<!--/*@thymesVar id="recipe" type="com.abdulquadir.recipeapp.model.Recipe"*/-->
 <div class="container" style="margin-top: 20px">
     <div class="row">
         <div class="col-lg-10">
             <form  th:object="${recipe}" th:action="@{/recipe/}" method="post">
+
+                <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+                    <p>Please Correct Error Below</p>
+                </div>
+
                 <input type="hidden" th:field="*{id}"/>
                 <div class="align-content-center">
                     <div class="card" style="margin-top: 20px">
@@ -36,9 +41,15 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-10 form-group">
+                                <div class="col-md-3 form-group" th:class="${#fields.hasErrors('description')}
+                                ? 'col-md-3 form-group has-error' : 'col-md-3 from group' ">
                                     <label>Recipe Description:</label>
-                                    <input type="text" class="form-control" th:field="*{description}"/>
+                                    <input type="text" class="form-control" th:field="*{description}" th:errorclass="has-error"/>
+                                    <span class="help-block" th:if="${#fields.hasErrors('description')}">
+                                        <ul>
+                                            <li th:each="err: ${#fields.errors('description')}" th:text="${err}" />
+                                        </ul>
+                                    </span>
                                 </div>
                             </div>
                             <div class="row">
@@ -158,8 +169,6 @@
         </div>
     </div>
 </div>
-
-
 
 </body>
 </html>
