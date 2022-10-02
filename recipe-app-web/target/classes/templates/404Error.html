@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 Not Found Error</title>
+</head>
+<body>
+    <h1>404 Not Found Error</h1>
+    <h3> Page not found!! </h3>
+    <h4>It seems you're looking for something which is not there in our system.</h4>
+
+    <p th:text="${exception.getMessage()}"></p>
+    
+</body>
+</html>

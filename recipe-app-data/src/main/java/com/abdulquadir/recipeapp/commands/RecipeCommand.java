@@ -21,8 +21,8 @@ public class RecipeCommand {
 
     private Long id;
 
+    @Size(min=5, max=150)
     @NotBlank
-    @Size(min=25, max=511)
     private String description;
 
     @Min(1) @Max(999)

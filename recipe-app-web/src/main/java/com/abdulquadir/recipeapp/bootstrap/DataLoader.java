@@ -7,6 +7,7 @@ import com.abdulquadir.recipeapp.repositories.RecipeRepository;
 import com.abdulquadir.recipeapp.repositories.UnitOfMeasureRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationListener;
+import org.springframework.context.annotation.Profile;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
@@ -16,6 +17,7 @@ import java.util.List;
 
 @Slf4j
 @Component
+@Profile("default")
 public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
     private final RecipeRepository recipeRepository;
@@ -31,6 +33,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
         recipeRepository.saveAll(getRecipes());
+        log.debug("Loading Bootstrap Data.");
     }
 
     private List<Recipe> getRecipes(){

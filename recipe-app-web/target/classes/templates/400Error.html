@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>400 Bad Request</title>
+</head>
+<body>
+<h1>400</h1>
+<h3> Bad Request!! </h3>
+<h4>It seems your provided input is wrong.</h4>
+
+<p th:text="${exception.getMessage()}"></p>
+
+</body>
+</html>

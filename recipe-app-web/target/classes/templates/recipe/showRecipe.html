@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!--    Bootstrap CSS-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+        integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous"
+        th:href="@{/webjars/bootstrap/4.6.1/css/bootstrap.min.css}">
+    <!--    Bootstrap JS-->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"
+        th:src="@{/webjars/bootstrap/4.6.1/js/bootstrap.min.js}"></script>
+    <!--Bootstrap Icons    -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+
+    <title>Recipes</title>
+</head>
+
+<body>
+    <!--/*@thymesVar id="recipe" type="com.abdulquadir.recipeapp.model.Recipe"*/-->
+    <div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card" style="margin-top: 20px">
+                        <div class="card-header">
+                            <h1 class="card-title" th:text="${recipe.description}">Recipe Description!!</h1>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h5>Categories:</h5>
+                                </div>
+                                <div class="col-md-3">
+                                    <ul>
+                                        <li th:each="category : ${recipe.categories}"
+                                            th:text="${category.getDescription()}">
+                                            cat three
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-4">
+                                    <img src="../../static/images/guacamole1.jpg"
+                                         th:src="@{'/recipe/'+ ${recipe.id} + '/recipeimage'}"
+                                         width="200" height="200">
+                                </div>
+                                <div class="col-md-1">
+                                    <a class="btn btn-outline-success" href="#" th:href="@{'/recipe/' +${recipe.id}+'/image'}" role="button">
+                                        <i class="bi bi-cloud-arrow-up"></i>
+                                        upload
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 20px">
+                                <div class="col-md-3">
+                                    <h5>Prep Time:</h5>
+                                </div>
+                                <div class="col-md-3">
+                                    <p th:text="${(recipe.prepTime) +  '  Min'}">30 min</p>
+                                </div>
+                                <div class="col-md-3">
+                                    <h5>Difficulty:</h5>
+                                </div>
+                                <div class="col-md-3">
+                                    <p th:text="${recipe.difficulty}">Easy</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h5>Cooktime:</h5>
+                                </div>
+                                <div class="col-md-3">
+                                    <p th:text="${(recipe.cookTime  +  '  Min')}">30 min</p>
+                                </div>
+                                <div class="col-md-3">
+                                    <h5>Servings:</h5>
+                                </div>
+                                <div class="col-md-3">
+                                    <p th:text="${recipe.servings}">4</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h5>Source:</h5>
+                                </div>
+                                <div class="col-md-3">
+                                    <p th:text="${recipe.source}">30 min</p>
+                                </div>
+                                <div class="col-md-3">
+                                    <h5>URL:</h5>
+                                </div>
+                                <div class="col-md-3">
+                                    <p><a href="#" th:href="${recipe.url}" target="_blank" >View Original</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card" style="margin-top: 20px">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <h1 class="card-title">Ingredients</h1>
+                        </div>
+                        <div class="col-md-2">
+                            <a class="btn btn-primary" href="#" th:href="@{'/recipe/' +${recipe.id}+'/ingredients'}" role="button">Edit</a>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <ul>
+                                <li th:each="ingredient : ${recipe.ingredients}" th:text="${(ingredient.getAmount() +
+                                        ' ' + ingredient.uom.getDescription() +
+                                        ' - ' + ingredient.getDescription())}">1 Teaspoon of Sugar</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card" style="margin-top: 20px">
+                <div class="card-header">
+                    <h1 class="card-title">Directions</h1>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p class="card-text" th:text="${recipe.directions}">Lorem ipsum dolor sit amet, consectetuer
+                                adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis
+                                natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec
+                                quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat
+                                massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget,
+                                arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam
+                                dictum felis eu pede mollis pretium.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card" style="margin-top: 20px">
+                <div class="card-header">
+                    <h1 class="card-title">Notes</h1>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p class="card-text" th:text="${recipe.notes.recipeNotes}">Lorem ipsum dolor sit amet,
+                                consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis
+                                natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec
+                                quam felis, ultricies nec, pellentesque eu, pretium quis, sem.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
