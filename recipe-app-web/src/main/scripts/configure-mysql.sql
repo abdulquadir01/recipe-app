@@ -3,29 +3,29 @@
 
 # connect to mysql and run as root user
 #Create Databases
-CREATE DATABASE sfg_dev;
-CREATE DATABASE sfg_prod;
+CREATE DATABASE recipedb_dev;
+CREATE DATABASE recipedb_prod;
 
 #Create database service accounts
-CREATE USER 'sfg_dev_user'@'localhost' IDENTIFIED BY 'guru';
-CREATE USER 'sfg_prod_user'@'localhost' IDENTIFIED BY 'guru';
-CREATE USER 'sfg_dev_user'@'%' IDENTIFIED BY 'guru';
-CREATE USER 'sfg_prod_user'@'%' IDENTIFIED BY 'guru';
+CREATE USER 'recipe_dev_user'@'localhost' IDENTIFIED BY 'pwd@123';
+CREATE USER 'recipe_prod_user'@'localhost' IDENTIFIED BY 'pwd@123';
+CREATE USER 'recipe_dev_user'@'%' IDENTIFIED BY 'pwd@123';
+CREATE USER 'recipe_prod_user'@'%' IDENTIFIED BY 'pwd@123';
 
 #Database grants
-GRANT SELECT ON sfg_dev.* to 'sfg_dev_user'@'localhost';
-GRANT INSERT ON sfg_dev.* to 'sfg_dev_user'@'localhost';
-GRANT DELETE ON sfg_dev.* to 'sfg_dev_user'@'localhost';
-GRANT UPDATE ON sfg_dev.* to 'sfg_dev_user'@'localhost';
-GRANT SELECT ON sfg_prod.* to 'sfg_prod_user'@'localhost';
-GRANT INSERT ON sfg_prod.* to 'sfg_prod_user'@'localhost';
-GRANT DELETE ON sfg_prod.* to 'sfg_prod_user'@'localhost';
-GRANT UPDATE ON sfg_prod.* to 'sfg_prod_user'@'localhost';
-GRANT SELECT ON sfg_dev.* to 'sfg_dev_user'@'%';
-GRANT INSERT ON sfg_dev.* to 'sfg_dev_user'@'%';
-GRANT DELETE ON sfg_dev.* to 'sfg_dev_user'@'%';
-GRANT UPDATE ON sfg_dev.* to 'sfg_dev_user'@'%';
-GRANT SELECT ON sfg_prod.* to 'sfg_prod_user'@'%';
-GRANT INSERT ON sfg_prod.* to 'sfg_prod_user'@'%';
-GRANT DELETE ON sfg_prod.* to 'sfg_prod_user'@'%';
-GRANT UPDATE ON sfg_prod.* to 'sfg_prod_user'@'%';
+GRANT SELECT ON recipedb_dev.* to 'recipe_dev_user'@'localhost';
+GRANT INSERT ON recipedb_dev.* to 'recipe_dev_user'@'localhost';
+GRANT DELETE ON recipedb_dev.* to 'recipe_dev_user'@'localhost';
+GRANT UPDATE ON recipedb_dev.* to 'recipe_dev_user'@'localhost';
+GRANT SELECT ON recipedb_prod.* to 'recipe_prod_user'@'localhost';
+GRANT INSERT ON recipedb_prod.* to 'recipe_prod_user'@'localhost';
+GRANT DELETE ON recipedb_prod.* to 'recipe_prod_user'@'localhost';
+GRANT UPDATE ON recipedb_prod.* to 'recipe_prod_user'@'localhost';
+GRANT SELECT ON recipedb_dev.* to 'recipe_dev_user'@'%';
+GRANT INSERT ON recipedb_dev.* to 'recipe_dev_user'@'%';
+GRANT DELETE ON recipedb_dev.* to 'recipe_dev_user'@'%';
+GRANT UPDATE ON recipedb_dev.* to 'recipe_dev_user'@'%';
+GRANT SELECT ON recipedb_prod.* to 'recipe_prod_user'@'%';
+GRANT INSERT ON recipedb_prod.* to 'recipe_prod_user'@'%';
+GRANT DELETE ON recipedb_prod.* to 'recipe_prod_user'@'%';
+GRANT UPDATE ON recipedb_prod.* to 'recipe_prod_user'@'%';

@@ -70,7 +70,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
                 "3. Add the remaining ingredients to taste: " + "\n" +
                     "Sprinkle with salt and lime (or lemon) juice. The acid in the lime juice will provide some balance to the richness of the avocado and will help delay the avocados from turning brown.\n" +
                     "\n" +
-                    "Add the chopped onion, cilantro, black pepper, and chilis. Chili peppers vary individually in their spiciness. So, start with a half of one chili pepper and add more to the guacamole to your desired degree of heat."
+                    "Add the chopped onion, cilantro, black pepper, and chilies. Chili peppers vary individually in their spiciness. So, start with a half of one chili pepper and add more to the guacamole to your desired degree of heat."
                     + "\n" +
                 "4. Serve immediately:\n" +
                         "If making a few hours ahead, place plastic wrap on the surface of the guacamole and press down to cover it to prevent air reaching it. (The oxygen in the air causes oxidation which will turn the guacamole brown.)\n" +
@@ -86,7 +86,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         guacRecipe.setNotes(guacNotes);
 
         log.info("adding ingredient information for guacamole");
-        guacRecipe.addIngredient(new Ingredient("ripe Avacados", new BigDecimal(2), eachUom));
+        guacRecipe.addIngredient(new Ingredient("ripe Avocados", new BigDecimal(2), eachUom));
         guacRecipe.addIngredient(new Ingredient("Kosher salt", new BigDecimal(5 ), teaSpoonUom));
         guacRecipe.addIngredient(new Ingredient("fresh lime juice or lemon juice", new BigDecimal(2), tableSpoonUom));
         guacRecipe.addIngredient(new Ingredient("minced red onion or thinly sliced green onion", new BigDecimal(2), tableSpoonUom));
@@ -172,7 +172,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         return unitOfMeasureRepository
                 .findByDescription(uomDesc)
                 .orElseThrow(
-                        ()-> new RuntimeException("Unit of measure " + uomDesc + "not found!!")
+                        ()-> new RuntimeException("Unit of measure " + uomDesc + " not found!!")
                 );
     }
 
