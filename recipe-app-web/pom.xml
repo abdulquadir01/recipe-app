@@ -20,6 +20,11 @@
     <dependencies>
 
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>com.abdulquadir.recipe-app</groupId>
             <artifactId>recipe-app-data</artifactId>
             <version>0.0.1-SNAPSHOT</version>
@@ -36,11 +41,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
         <dependency>
@@ -73,6 +73,11 @@
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
             <version>4.5.1</version>
             <scope>test</scope>
         </dependency>
@@ -95,6 +100,7 @@
                         <format>xml</format>
                     </formats>
                     <check />
+
                 </configuration>
             </plugin>
             <plugin>
