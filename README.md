@@ -5,7 +5,7 @@ A simple recipe app built using Spring Boot.
 
 
 
-### Recipe app built using SpringBoot & Thymeleaf
+### Recipe app built using Spring Boot & Thymeleaf
 
 #### Prerequisites
 - Java11
