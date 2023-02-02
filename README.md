@@ -1,5 +1,4 @@
 # Recipe-App
-<hr>
 
 
 ### Recipe app built using Spring Boot & Thymeleaf
