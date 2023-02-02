@@ -1,9 +1,6 @@
 # Recipe-App
 <hr>
 
-A simple recipe app built using Spring Boot. 
-
-
 
 ### Recipe app built using Spring Boot & Thymeleaf
 
